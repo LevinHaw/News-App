@@ -9,13 +9,26 @@ import com.bumptech.glide.Glide
 import com.rakamin.newsapp.R
 import com.rakamin.newsapp.databinding.ItemHeadlineNewsBinding
 import com.rakamin.newsapp.repository.data.remote.response.ArticlesItem
+import com.rakamin.newsapp.util.DateFormat
 
-class HeadlineAdapter : PagingDataAdapter <ArticlesItem, HeadlineAdapter.HeadlineViewHolder>(DIFF_CALLBACK) {
+class HeadlineAdapter(private val onClickListener: (ArticlesItem) -> Unit) : PagingDataAdapter <ArticlesItem, HeadlineAdapter.HeadlineViewHolder>(DIFF_CALLBACK) {
 
-    class HeadlineViewHolder(private val binding : ItemHeadlineNewsBinding) : RecyclerView.ViewHolder(binding.root) {
+    inner class HeadlineViewHolder(private val binding : ItemHeadlineNewsBinding, private val onClickListener: (ArticlesItem) -> Unit) : RecyclerView.ViewHolder(binding.root) {
+
+        init {
+            binding.root.setOnClickListener {
+                val position = bindingAdapterPosition
+                if (position != RecyclerView.NO_POSITION) {
+                    val article = getItem(position)
+                    if (article != null) {
+                        onClickListener(article)
+                    }
+                }
+            }
+        }
         fun bind(headline : ArticlesItem) {
             binding.tvTitleHeadline.text = headline.title
-            binding.tvDate.text = headline.publishedAt
+            binding.tvDate.text = DateFormat.formatDate(headline.publishedAt!!)
             if (headline.source != null){
                 binding.tvSource.text = headline.source?.name
             } else {
@@ -31,7 +44,7 @@ class HeadlineAdapter : PagingDataAdapter <ArticlesItem, HeadlineAdapter.Headlin
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HeadlineViewHolder {
         val binding = ItemHeadlineNewsBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return HeadlineViewHolder(binding)
+        return HeadlineViewHolder(binding, onClickListener)
     }
 
     override fun onBindViewHolder(holder: HeadlineViewHolder, position: Int) {
