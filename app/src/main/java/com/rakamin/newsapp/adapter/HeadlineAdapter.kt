@@ -11,9 +11,13 @@ import com.rakamin.newsapp.databinding.ItemHeadlineNewsBinding
 import com.rakamin.newsapp.repository.data.remote.response.ArticlesItem
 import com.rakamin.newsapp.util.DateFormat
 
-class HeadlineAdapter(private val onClickListener: (ArticlesItem) -> Unit) : PagingDataAdapter <ArticlesItem, HeadlineAdapter.HeadlineViewHolder>(DIFF_CALLBACK) {
+class HeadlineAdapter(private val onClickListener: (ArticlesItem) -> Unit) :
+    PagingDataAdapter <ArticlesItem, HeadlineAdapter.HeadlineViewHolder>(DIFF_CALLBACK) {
 
-    inner class HeadlineViewHolder(private val binding : ItemHeadlineNewsBinding, private val onClickListener: (ArticlesItem) -> Unit) : RecyclerView.ViewHolder(binding.root) {
+    inner class HeadlineViewHolder(
+        private val binding : ItemHeadlineNewsBinding,
+        private val onClickListener: (ArticlesItem) -> Unit
+    ) : RecyclerView.ViewHolder(binding.root) {
 
         init {
             binding.root.setOnClickListener {

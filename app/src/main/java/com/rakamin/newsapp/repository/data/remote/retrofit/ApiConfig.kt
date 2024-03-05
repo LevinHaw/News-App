@@ -19,7 +19,6 @@ class ApiConfig {
         const val BASE_URL = BuildConfig.BASE_URL
         const val SECRET = BuildConfig.SECRET
     }
-
     @Singleton
     @Provides
     fun getApiService(): ApiService {

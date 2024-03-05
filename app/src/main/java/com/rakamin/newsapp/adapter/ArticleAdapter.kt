@@ -11,9 +11,13 @@ import com.rakamin.newsapp.databinding.ItemNewsBinding
 import com.rakamin.newsapp.repository.data.remote.response.ArticlesItem
 import com.rakamin.newsapp.util.DateFormat
 
-class ArticleAdapter(private val onClickListener: (ArticlesItem) -> Unit) : PagingDataAdapter<ArticlesItem, ArticleAdapter.ArticleViewHolder>(DIFF_CALLBACK){
+class ArticleAdapter(private val onClickListener: (ArticlesItem) -> Unit) : PagingDataAdapter<ArticlesItem,
+        ArticleAdapter.ArticleViewHolder>(DIFF_CALLBACK){
 
-    inner class ArticleViewHolder(private val binding : ItemNewsBinding, private val onClickListener: (ArticlesItem) -> Unit): RecyclerView.ViewHolder(binding.root) {
+    inner class ArticleViewHolder(
+        private val binding : ItemNewsBinding,
+        private val onClickListener: (ArticlesItem) -> Unit
+    ) : RecyclerView.ViewHolder(binding.root) {
 
         init {
             binding.root.setOnClickListener {

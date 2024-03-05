@@ -19,8 +19,8 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
         // Key
-        buildConfigField("String", "BASE_URL","\"https://newsapi.org/\"")
-        buildConfigField("String", "SECRET","\"3bd796e4eb5d441986eca4f087492613\"")
+        buildConfigField("String", "BASE_URL","\"your_api\"")
+        buildConfigField("String", "SECRET","\"your_key_api\"")
     }
 
     buildFeatures {
@@ -82,9 +82,6 @@ dependencies {
     implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4")
     implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4")
 
-    // Room
-    implementation("androidx.room:room-ktx:2.5.2")
-    implementation("androidx.room:room-runtime:2.5.2")
-    kapt("androidx.room:room-compiler:2.5.2")
+
 
 }

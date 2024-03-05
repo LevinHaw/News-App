@@ -6,13 +6,17 @@ import retrofit2.http.Query
 
 interface ApiService {
 
-    @GET("v2/top-headlines?country=us&category=technology")
+    @GET("v2/top-headlines")
     suspend fun getHeadlineNews(
+        @Query("country") country : String,
+        @Query("category") category : String,
         @Query("page") page : Int
     ) : ArticleResponse
 
-    @GET("v2/everything?q=crypto&sortBy=popularity")
+    @GET("v2/everything")
     suspend fun getEverythingNews(
+        @Query("q") q : String,
+        @Query("sortBy") sortBy : String,
         @Query("page") page : Int
     ) : ArticleResponse
 

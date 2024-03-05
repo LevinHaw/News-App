@@ -16,7 +16,7 @@ class HeadlinePagingSource(private val apiService: ApiService) : PagingSource<In
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, ArticlesItem> {
         return try {
             val position = params.key ?: 1
-            val response = apiService.getHeadlineNews(position)
+            val response = apiService.getHeadlineNews(country = "us", category = "technology",position)
 
             return LoadResult.Page(
                 data = response.articles,

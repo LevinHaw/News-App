@@ -16,7 +16,7 @@ class ArticlePagingSource(private val apiService: ApiService) : PagingSource<Int
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, ArticlesItem> {
         return try {
             val position = params.key ?: 1
-            val response = apiService.getEverythingNews(position)
+            val response = apiService.getEverythingNews(q = "crypto", sortBy = "popularity",position)
 
             return LoadResult.Page(
                 data = response.articles,

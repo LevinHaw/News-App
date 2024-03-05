@@ -7,7 +7,8 @@ import java.util.TimeZone
 class DateFormat {
 
     companion object {
-        fun formatDate(dateString: String, inputPattern: String = "yyyy-MM-dd'T'HH:mm:ss'Z'", outputPattern: String = "EEE, d MMM yyyy"): String {
+        fun formatDate(dateString: String, inputPattern: String = "yyyy-MM-dd'T'HH:mm:ss'Z'",
+                       outputPattern: String = "EEE, d MMM yyyy"): String {
             val inputFormat = SimpleDateFormat(inputPattern, Locale.getDefault())
             inputFormat.timeZone = TimeZone.getTimeZone("UTC")
 
